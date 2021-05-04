@@ -1,8 +1,8 @@
 {
-  "short_name": "FireChat",
-  "name": "FireChat",
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
-}
+    "short_name": "FireChat",
+    "name": "FireChat",
+    "start_url": ".",
+    "display": "standalone",
+    "theme_color": "#000000",
+    "background_color": "#ffffff"
+  }
