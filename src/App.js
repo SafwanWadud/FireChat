@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { auth } from "./Firebase";
 import SignIn from "./components/SignIn";
-import Navbar from "./components/Navbar";
+import Channel from "./components/Channel";
 
 function App() {
     const [user, setUser] = useState(() => auth.currentUser);
@@ -14,7 +14,7 @@ function App() {
         return unsubscribe;
     });
 
-    return <div className="App">{user ? <Navbar /> : <SignIn />}</div>;
+    return <div className="App">{user ? <Channel /> : <SignIn />}</div>;
 }
 
 export default App;
