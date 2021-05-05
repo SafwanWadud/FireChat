@@ -13,7 +13,9 @@ export default function Message(props) {
                 {props.text ? (
                     <div className="text-message">{props.text}</div>
                 ) : (
-                    <img className="img-message" src={props.imageUrl} alt="" />
+                    <div className="img-message-div">
+                        <img className="img-message" src={props.imageUrl} alt="" />
+                    </div>
                 )}
             </div>
         </div>

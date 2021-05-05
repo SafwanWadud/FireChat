@@ -16,8 +16,9 @@ export default class Channel extends Component {
             snapshot.forEach((doc) => {
                 tempMessages.push({ ...doc.data({ serverTimestamps: "estimate" }), id: doc.id });
             });
-            this.setState({ messages: tempMessages });
-            this.messageEndRef.scrollIntoView();
+            this.setState({ messages: tempMessages }, () => {
+                this.messageEndRef.scrollIntoView();
+            });
         });
     }
 
@@ -28,22 +29,26 @@ export default class Channel extends Component {
     render() {
         return (
             <div>
-                <Navbar />
                 <div>
-                    <h2>Welcome to FireChat!</h2>
-                    <p>This is the beginning of the chat</p>
-                    <hr />
-                </div>
-                <div className="messages">
-                    {this.state.messages.map((message) => (
-                        <Message {...message} key={message.id} />
-                    ))}
+                    <Navbar />
+                    <div>
+                        <h2>Welcome to FireChat!</h2>
+                        <p>This is the beginning of the chat</p>
+                        <hr />
+                    </div>
+                    <div className="messages">
+                        {this.state.messages.map((message) => (
+                            <Message {...message} key={message.id} />
+                        ))}
+                    </div>
+                    <InputBar />
                 </div>
                 <div
                     ref={(elem) => {
                         this.messageEndRef = elem;
-                    }}></div>
-                <InputBar />
+                    }}>
+                    reference
+                </div>
             </div>
         );
     }

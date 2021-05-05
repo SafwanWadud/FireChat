@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import firebase, { auth, db, storage } from "../Firebase";
 import "../styles/index.css";
+import loadingImage from "../images/loading.gif";
 
 export default class InputBar extends Component {
     sendMessage = (e) => {
@@ -34,31 +35,35 @@ export default class InputBar extends Component {
             return;
         }
 
-        let imageRef = storage.ref().child(`${auth.currentUser.uid}/${file}`); //check storage [object file]???
-
-        imageRef
-            .put(file)
-            .then((snapshot) => {
-                snapshot.ref
-                    .getDownloadURL()
-                    .then((url) => {
-                        db.collection("messages")
-                            .add({
-                                username: auth.currentUser.displayName,
-                                imageUrl: url,
-                                profilePicUrl: auth.currentUser.photoURL,
-                                timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+        db.collection("messages")
+            .add({
+                username: auth.currentUser.displayName,
+                imageUrl: loadingImage,
+                profilePicUrl: auth.currentUser.photoURL,
+                timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+            })
+            .then((docSnapshot) => {
+                let imageRef = storage.ref().child(`${auth.currentUser.uid}/${docSnapshot.id}/${file.name}`);
+                imageRef
+                    .put(file)
+                    .then((fileSnapshot) => {
+                        fileSnapshot.ref
+                            .getDownloadURL()
+                            .then((url) => {
+                                docSnapshot.update({
+                                    imageUrl: url,
+                                });
                             })
-                            .catch((error) => {
-                                console.error("Error writing new message to database", error);
+                            .catch(function (error) {
+                                console.error("Error downloading file from Cloud Storage:", error);
                             });
                     })
                     .catch(function (error) {
-                        console.error("Error downloading file from Cloud Storage:", error);
+                        console.error("Error uploading file to Cloud Storage:", error);
                     });
             })
-            .catch(function (error) {
-                console.error("Error uploading file to Cloud Storage:", error);
+            .catch((error) => {
+                console.error("Error writing new message to database", error);
             });
     };
 
