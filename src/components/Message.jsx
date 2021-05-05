@@ -10,7 +10,11 @@ export default function Message(props) {
                     <div>{props.username}</div>
                     <div>{formatRelative(props.timestamp.toDate(), new Date())}</div>
                 </div>
-                <div>{props.text}</div>
+                {props.text ? (
+                    <div className="text-message">{props.text}</div>
+                ) : (
+                    <img className="img-message" src={props.imageUrl} alt="" />
+                )}
             </div>
         </div>
     );
