@@ -72,6 +72,9 @@ export default class InputBar extends Component {
             <div className="input-bar">
                 <form action="#" onSubmit={this.sendMessage}>
                     <input type="text" placeholder="Message..." required />
+                    <button onClick={this.promptFilePicker} title="Add an image">
+                        +
+                    </button>
                     <button type="submit">Send</button>
                 </form>
                 <input
@@ -83,9 +86,6 @@ export default class InputBar extends Component {
                     }}
                     onChange={this.sendImage}
                 />
-                <button onClick={this.promptFilePicker} title="Add an image">
-                    Upload Image
-                </button>
             </div>
         );
     }

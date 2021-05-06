@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Navbar from "./Navbar";
+import NavBar from "./NavBar";
 import Message from "./Message";
 import InputBar from "./InputBar";
 import { db } from "../Firebase";
@@ -29,25 +29,25 @@ export default class Channel extends Component {
     render() {
         return (
             <div>
-                <div>
-                    <Navbar />
-                    <div>
-                        <h2>Welcome to FireChat!</h2>
-                        <p>This is the beginning of the chat</p>
-                        <hr />
-                    </div>
-                    <div className="messages">
-                        {this.state.messages.map((message) => (
-                            <Message {...message} key={message.id} />
-                        ))}
+                <NavBar />
+                <div className="main">
+                    <div className="channel">
+                        <div className="text-center">
+                            <h2>Welcome to FireChat!</h2>
+                            <p className="mb-3">This is the beginning of the chat</p>
+                            <hr />
+                        </div>
+                        <div className="messages">
+                            {this.state.messages.map((message) => (
+                                <Message {...message} key={message.id} />
+                            ))}
+                        </div>
                     </div>
                     <InputBar />
-                </div>
-                <div
-                    ref={(elem) => {
-                        this.messageEndRef = elem;
-                    }}>
-                    reference
+                    <div
+                        ref={(elem) => {
+                            this.messageEndRef = elem;
+                        }}></div>
                 </div>
             </div>
         );
