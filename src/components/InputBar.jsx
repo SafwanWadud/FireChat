@@ -6,6 +6,7 @@ import loadingImage from "../images/loading.gif";
 export default class InputBar extends Component {
     sendMessage = (e) => {
         e.preventDefault();
+        if (e.target[0].value.trim() === "") return;
         db.collection("messages")
             .add({
                 username: auth.currentUser.displayName,
@@ -69,23 +70,35 @@ export default class InputBar extends Component {
 
     render() {
         return (
-            <div className="input-bar">
-                <form action="#" onSubmit={this.sendMessage}>
-                    <input type="text" placeholder="Message..." required />
-                    <button onClick={this.promptFilePicker} title="Add an image">
-                        +
+            <div className="fixed-bottom input-div">
+                <div className="input-bar d-flex p-2 mb-4 shadow">
+                    <input
+                        id="img-file"
+                        type="file"
+                        accept="image/*"
+                        ref={(elem) => {
+                            this.filePickerRef = elem;
+                        }}
+                        onChange={this.sendImage}
+                    />
+                    <button className="px-2 file-picker" onClick={this.promptFilePicker} title="Add an image">
+                        <i className="far fa-image icon"></i>
                     </button>
-                    <button type="submit">Send</button>
-                </form>
-                <input
-                    id="img-file"
-                    type="file"
-                    accept="image/*"
-                    ref={(elem) => {
-                        this.filePickerRef = elem;
-                    }}
-                    onChange={this.sendImage}
-                />
+                    <div className="flex-grow-1 d-flex ">
+                        <form className="flex-grow-1 d-flex" action="#" onSubmit={this.sendMessage}>
+                            <input
+                                className="text flex-grow-1 mx-1"
+                                type="text"
+                                placeholder="Message..."
+                                maxLength="750"
+                                required
+                            />
+                            <button className="send" type="submit">
+                                Send
+                            </button>
+                        </form>
+                    </div>
+                </div>
             </div>
         );
     }

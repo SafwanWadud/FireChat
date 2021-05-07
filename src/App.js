@@ -14,7 +14,7 @@ function App() {
         return unsubscribe;
     });
 
-    return <div className="App">{user ? <Channel /> : <SignIn />}</div>;
+    return <div className="App ">{user ? <Channel /> : <SignIn />}</div>;
 }
 
 export default App;

@@ -6,6 +6,11 @@
     border-radius: 20px;
 }
 
+.channel,
+.input-bar {
+    margin: 0 15%;
+}
+
 #img-file {
     display: none;
 }
@@ -25,12 +30,12 @@
 }
 
 .navbar-custom {
-    background-color: #2c2f33;
-    color: white;
+    background-color: #383c44;
 }
 
 .channel {
     margin-top: 16vh;
+    margin-bottom: 10vh;
 }
 
 .sign-out {
@@ -41,6 +46,17 @@
 .text-message,
 h2 {
     color: white;
+    word-wrap: break-word;
+}
+
+.message:hover {
+    background-color: #32353b;
+    border-radius: 5px;
+    transition-duration: 0.2s;
+}
+
+.message {
+    transition-duration: 0.2s;
 }
 
 .main {
@@ -49,11 +65,103 @@ h2 {
 }
 
 .time {
-    color: #99aab5;
+    color: #727781;
     font-size: small;
-    opacity: 40%;
 }
 
 .username {
-    color: #89266f;
+    color: #a02f82;
+}
+
+.input-bar {
+    background-color: #43474e;
+    border-radius: 6px;
+}
+
+.input-div {
+    background-color: #383c44;
+}
+
+.send {
+    color: #727781;
+    font-weight: bold;
+    transition-duration: 0.3s;
+}
+
+.send:hover,
+.icon:hover {
+    color: white;
+    transition-duration: 0.3s;
+}
+
+.file-picker,
+.text,
+.send {
+    border: none;
+    background-color: transparent;
+}
+
+textarea:focus,
+input:focus,
+button:focus {
+    outline: none;
+}
+
+input[type="text"] {
+    color: white;
+}
+
+::placeholder,
+.desc {
+    color: #727781;
+}
+
+.navbar-custom .nav-custom .nav-text {
+    color: white;
+    font-weight: lighter;
+}
+
+.navbar-custom .nav-custom .sign-out {
+    background-color: transparent;
+    border: none;
+    color: #a02f82;
+    font-size: large;
+}
+
+.navbar-custom .nav-custom .sign-out:hover {
+    background-color: #a02f82;
+    color: white;
+}
+
+.navbar-custom .nav-custom .sign-out:active,
+.navbar-custom .nav-custom .sign-out:focus {
+    box-shadow: 0 0 1px 5px #a02f82;
+}
+
+.icon {
+    color: #727781;
+    font-size: x-large;
+    transition-duration: 0.3s;
+}
+
+.title-card {
+    width: 40vw;
+    height: 40vh;
+    background-color: #32353b;
+    border-radius: 10px;
+    color: white;
+}
+
+.title-logo {
+    width: 50px;
+    height: 50px;
+}
+
+.title-brand {
+    width: 50vw;
+}
+
+.google-logo {
+    width: 25px;
+    height: 25px;
 }
