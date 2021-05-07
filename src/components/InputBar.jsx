@@ -90,7 +90,7 @@ export default class InputBar extends Component {
                                 className="text flex-grow-1 mx-1"
                                 type="text"
                                 placeholder="Message..."
-                                maxLength="750"
+                                maxLength="500"
                                 required
                             />
                             <button className="send" type="submit">
